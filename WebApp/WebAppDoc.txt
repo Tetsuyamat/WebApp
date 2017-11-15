@@ -1,0 +1,16 @@
+Web Application development
+
+REDIPS Example 1, 16, 28
+
+
+Features from 1
+ - The saving to JSON format.
+ - The 'Disable dropping to already taken table cells.
+
+Features from 16
+ - picture on hover
+ - Growth of item possibly?
+ - 
+
+Features from 28
+ - The load 2 button, loading the content into the tabel from a JSON Array
