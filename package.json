@@ -1,0 +1,23 @@
+{
+  "name": "WebApplicationDevelopment",
+  "version": "1.0.0",
+  "description": "Web Application Demo",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "fs": "0.0.1-security",
+    "js2xmlparser": "^2.0.2",
+    "libxslt": "^0.6.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TetsuyaMat17/WebApp.git"
+  },
+  "author": "Tetsuya",
+  "homepage": "https://github.com/TetsuyaMat17/WebApp.git#readme"
+}
