@@ -26,6 +26,7 @@
 			</style>
 			<script src="/js/jquery.min.js"></script>
 			<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/jquery.tabletojson.js"></script>
 			<script>
 				function load() {
 					$.ajax({
@@ -84,6 +85,8 @@
       </div>
     </div>
   </div>
+		
+	<br><br><br>
 		<!-- tables inside this DIV could have draggable content -->
 		<div id="redips-drag">
 			
@@ -321,7 +324,35 @@
 			<div><input type="radio" name="drop_option" class="checkbox" onclick="setMode(this)" value="overwrite" title="Overwrite content"/><span class="message_line">Overwrite content</span></div>
 			<div><input type="checkbox" class="checkbox" onclick="toggleDeleteCloned(this)" title="Remove cloned object if dragged outside of any table" checked="true"/><span class="message_line">Remove cloned element if dragged outside of any table</span></div>
 			<div><input type="checkbox" class="checkbox" onclick="toggleConfirm(this)" title="Confirm delete"/><span class="message_line">Confirm delete</span></div>
-			<div><input type="checkbox" class="checkbox" onclick="toggleDragging(this)" title="Enable dragging" checked="true"/><span class="message_line">Enable dragging</span></div>			
+			<div><input type="checkbox" class="checkbox" onclick="toggleDragging(this)" title="Enable dragging" checked="true"/><span class="message_line">Enable dragging</span></div>
+
 		</div>
+		<br><br><br>
+		<button id="run" class="btn btn-primary">Convert!</button>
+		<br><br>
+		<form enctype='application/json' action="/post/json" method="post">
+            
+              <div class="field">
+                <button type="submit">Submit</button>
+              </div>
+     </form>
+		
+		<script>
+			
+						
+			function tableToJSON(table) {
+				var obj = {};
+				var row, rows = table.rows;
+				for (var i=0, iLen=rows.length; i<iLen; i++) {
+					row = rows[i];
+					obj[row.cells[0].textContent] = row.cells[1].textContent
+				}
+				return JSON.stringify(obj);
+			}
+
+			console.log(tableToJSON(document.getElementById('table1'))); // {"Name:":"Carlos","Age:":"22"}"
+
+		</script>
+		
 	</body>
 </html>

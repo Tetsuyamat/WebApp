@@ -7,9 +7,9 @@
 // define redips_init variable
 var redipsInit;
 
+
 // redips initialization
 redipsInit = function () {
-	
 	// reference to the REDIPS.drag library and message line
 	var	rd = REDIPS.drag,
 		msg = document.getElementById('message');
@@ -118,41 +118,14 @@ function save(type) {
 	}
 	// display query string
 	else if (type === 'json') {
-			var table = $('#table1').tableToJSON();
-			console.log(table);
-			alert(JSON.stringify(table));  
+		//window.open('/my/multiple-parameters-json.php?p=' + table_content, 'Mypop', 'width=350,height=260,scrollbars=yes');
+		window.open('multiple-parameters-json.php?p=' + table_content, 'Mypop', 'width=360,height=260,scrollbars=yes');
 	}
 	else {
 		//window.open('/my/multiple-parameters.php?' + table_content, 'Mypop', 'width=350,height=160,scrollbars=yes');
 		window.open('multiple-parameters.php?' + table_content, 'Mypop', 'width=360,height=260,scrollbars=yes');
 	}
 }
-
-
- /* function save(type) {
-
-		var table_content;
-		// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
-		table_content = REDIPS.drag.saveContent('table1', type);
-		
-    // Read in a JSON file
-    var JSONfile = fs.readFileSync('test.json', 'utf8');
-
-    // Parse the JSON file in order to be able to edit it 
-    var JSONparsed = JSON.parse(JSONfile);
-
-    // Add a new record into player array within the JSON file    
-    JSONparsed.player.push(table_content);
-
-    // Beautify the resulting JSON file
-    var JSONformated = JSON.stringify(JSONparsed, null, 4);
-
-    // Write the updated JSON file back to the system 
-    fs.writeFileSync('test.json', JSONformated);
-
-
-  }*/
-
 
 
 // add onload event listener

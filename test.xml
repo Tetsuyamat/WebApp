@@ -22,11 +22,10 @@
         <Age></Age>
     </player>
     <player>
-        <Position></Position>
-        <Name></Name>
-        <Squad_No>test</Squad_No>
-        <Club></Club>
-        <Age></Age>
+        <Position>TEST</Position>
+        <Name>TEST</Name>
+        <Squad_No>TEST</Squad_No>
+        <Club>TEST</Club>
+        <Age>TEST</Age>
     </player>
-    <player/>
 </squad>

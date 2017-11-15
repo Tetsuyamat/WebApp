@@ -22,12 +22,11 @@
             "Age": ""
         },
         {
-            "Position": "",
-            "Name": "",
-            "Squad_No": "test",
-            "Club": "",
-            "Age": ""
-        },
-        {}
+            "Position": "TEST",
+            "Name": "TEST",
+            "Squad_No": "TEST",
+            "Club": "TEST",
+            "Age": "TEST"
+        }
     ]
 }
