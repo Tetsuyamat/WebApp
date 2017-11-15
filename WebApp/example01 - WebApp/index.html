@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta name="author" content="Darko Bunic"/>
+		<meta name="description" content="Drag and drop table content with JavaScript"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no"/><!-- "position: fixed" fix for Android 2.2+ -->
+		<link rel="stylesheet" href="style.css" type="text/css" media="screens"/>
+		<link rel="stylesheet" href="style-screen.css" type="text/css" media="screen"/>
+		<link rel="stylesheet" href="style-print.css" type="text/css" media="print"/>
+		<script type="text/javascript" src="../header.js"></script>
+		<script type="text/javascript" src="../redips-drag-min.js"></script>
+		<script type="text/javascript" src="script.js"></script>
+		<title>Example 1: Three tables</title>
+	</head>
+	<body>
+		<!-- hidden div element needed for hover -->
+    	<div id="hover-div" style="visibility:hidden; position:absolute; top:0; left:0;"></div>
+		<!-- tables inside this DIV could have draggable content -->
+		<div id="redips-drag">
+			
+			<div id="left_container">
+				<!-- this block will become sticky (with a little JavaScript help)-->
+				<div id="left">
+					<table id="tableleft">
+						<colgroup>
+							<col width="60"/>
+							<col width="60"/>
+							<col width="60"/>
+							<col width="60"/>
+						</colgroup>
+						
+						<tr>
+							<td><div id="ns0.9" class="redips-drag">ns0.9</div></td>
+							<td><div id="ns1.0a" class="redips-drag">ns1.0a</div></td>
+							<td><div id="ns1.1b" class="redips-drag">ns1.1b</div></td>
+							<td><div id="ns1.2" class="redips-drag">ns1.2</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="ns1.2a" class="redips-drag">ns1.2a</div></td>
+							<td><div id="ns1.3" class="redips-drag">ns1.3</div></td>
+							<td><div id="ns1.3" class="redips-drag">ns1.3a</div></td>
+							<td><div id="ns1.5" class="redips-drag">ns1.5</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="ns1.6" class="redips-drag">ns1.6</div></td>
+							<td><div id="ns1.8" class="redips-drag">ns1.8</div></td>
+							<td><div id="ns1.8a" class="redips-drag">ns1.8a</div></td>
+							<td><div id="ns1.8b" class="redips-drag">ns1.8b</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="ns1.9" class="redips-drag">ns1.9</div></td>
+							<td><div id="ns1.9a" class="redips-drag">ns1.9a</div></td>
+							<td><div id="ns1.9b" class="redips-drag">ns1.9b</div></td>
+							<td><div id="ns3.1" class="redips-drag">ns3.1</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="ns3.1a" class="redips-drag">ns3.1a</div></td>
+							<td><div id="ns3.1b" class="redips-drag">ns3.1b</div></td>
+							<td><div id="ns3.2" class="redips-drag">ns3.2</div></td>
+							<td><div id="ns3.2a" class="redips-drag">ns3.2a</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="ns3.2b" class="redips-drag">ns3.2b</div></td>
+							<td><div id="ns3.3" class="redips-drag">ns3.3</div></td>
+							<td><div id="ns3.3a" class="redips-drag">ns3.3a</div></td>
+							<td><div id="ns3.3b" class="redips-drag">ns3.3b</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="ns4.7" class="redips-drag">ns4.7</div></td>
+							<td><div id="ns4.7a" class="redips-drag">ns4.7a</div></td>
+							<td><div id="ns4.8b" class="redips-drag">ns4.8b</div></td>
+							<td><div id="ns4.9" class="redips-drag">ns4.9</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="ns5.4a" class="redips-drag">ns5.4a</div></td>
+							<td><div id="af1.1" class="redips-drag">af1.1</div></td>
+							<td><div id="af1.2" class="redips-drag">af1.2</div></td>
+							<td><div id="af1.2a1" class="redips-drag">af1.2a1</div></td>
+						</tr>
+						<tr>
+							<td><div id="af1.2b" class="redips-drag">Robbie Brady</div></td>
+							<td><div id="af1.3" class="redips-drag">af1.3</div></td>
+							<td><div id="af1.3a" class="redips-drag">af1.3a</div></td>
+							<td><div id="af1.3b" class="redips-drag">af1.3b</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="af1.5" class="redips-drag">af1.5</div></td>
+							<td><div id="af1.5a" class="redips-drag">af1.5a</div></td>
+							<td><div id="af2.1" class="redips-drag">af2.1</div></td>
+							<td><div id="af2.1a" class="redips-drag">af2.1a</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="af2.1b" class="redips-drag">af2.1b</div></td>
+							<td><div id="af2.2" class="redips-drag">af2.2</div></td>
+							<td><div id="af2.2a" class="redips-drag">af2.2a</div></td>
+							<td><div id="af2.2b" class="redips-drag">af2.2b</div></td>
+							
+						</tr>
+						<tr>
+							<td><div id="mg2.1" class="redips-drag">mg2.1</div></td>
+							<td><div id="mg2.2a" class="redips-drag">mg2.2a</div></td>
+							<td><div id="mg2.3a" class="redips-drag">mg2.3a</div></td>
+							<td></td>
+						</tr>
+					</table>
+					<div class="instructions">
+						Element dropped to the right container can be cloned with shift key.
+						Press shift key and start to drag expanded element.
+						On the other hand, cloned element will be deleted in case of dropping back to the left table.
+						Original and cloned elements have different hover color.
+					</div>
+				</div>
+
+			</div><!-- left container -->
+			
+			<table id="table1">
+				<colgroup><col width="100"/><col width="100"/><col width="100"/><col width="100"/><col width="100"/></colgroup>
+				<tr>
+					<td class="redips-mark">You</td>
+					<td class="redips-mark">can</td>
+					<td class="redips-mark">not</td>
+					<td class="redips-mark">drop</td>
+					<td class="redips-mark">here</td>
+				</tr>
+				<tr style="background-color: #eee">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr style="background-color: #eee">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr style="background-color: #eee">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<!-- <td><div id="d8" class="redips-drag t1"><img id="smile_img" src="/wp-includes/images/smilies/icon_smile.gif"/></div></td> -->
+				</tr>
+			</table>
+			<table id="table2">
+				<colgroup><col width="100"/><col width="100"/><col width="100"/><col width="100"/><col width="100"/></colgroup>
+				<tr>
+					<td class="redips-mark" title="You can not drop here">Table2</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+			<table id="table3">
+				<colgroup><col width="100"/><col width="100"/><col width="100"/><col width="100"/><col width="100"/></colgroup>
+				<tr style="background-color: #eee">
+					<td id="message" class="redips-mark" title="You can not drop here">Table3</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr style="background-color: #eee">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="redips-trash" title="Trash">Trash</td>
+				</tr>
+			</table>
+			<div><input type="button" value="Save1" class="button" onclick="save('plain')" title="Send content to the server (it will only show accepted parameters)"/><span class="message_line">Save content of the first table (plain query string)</span></div>
+			<div><input type="button" value="Save2" class="button" onclick="save('json')" title="Send content to the server (it will only show accepted parameters)"/><span class="message_line">Save content of the first table (JSON format)</span></div>
+			<div><input type="radio" name="drop_option" class="checkbox" onclick="setMode(this)" value="multiple" title="Enabled dropping to already taken table cells" checked="true"/><span class="message_line">Enable dropping to already taken table cells</span></div>
+			<div><input type="radio" name="drop_option" class="checkbox" onclick="setMode(this)" value="single" title="Disabled dropping to already taken table cells"/><span class="message_line">Disable dropping to already taken table cells</span></div>
+			<div><input type="radio" name="drop_option" class="checkbox" onclick="setMode(this)" value="switch" title="Switch content"/><span class="message_line">Switch content</span></div>
+			<div><input type="radio" name="drop_option" class="checkbox" onclick="setMode(this)" value="switching" title="Switching content continuously"/><span class="message_line">Switching content continuously</span></div>
+			<div><input type="radio" name="drop_option" class="checkbox" onclick="setMode(this)" value="overwrite" title="Overwrite content"/><span class="message_line">Overwrite content</span></div>
+			<div><input type="checkbox" class="checkbox" onclick="toggleDeleteCloned(this)" title="Remove cloned object if dragged outside of any table" checked="true"/><span class="message_line">Remove cloned element if dragged outside of any table</span></div>
+			<div><input type="checkbox" class="checkbox" onclick="toggleConfirm(this)" title="Confirm delete"/><span class="message_line">Confirm delete</span></div>
+			<div><input type="checkbox" class="checkbox" onclick="toggleDragging(this)" title="Enable dragging" checked="true"/><span class="message_line">Enable dragging</span></div>			
+		</div>
+	</body>
+</html>
