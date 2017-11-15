@@ -13,6 +13,13 @@
             "Squad_No": "TEST",
             "Club": "TEST",
             "Age": "TEST"
+        },
+        {
+            "Position": "test",
+            "Name": "et",
+            "Squad_No": "",
+            "Club": "",
+            "Age": ""
         }
     ]
 }

@@ -14,4 +14,11 @@
         <Club>TEST</Club>
         <Age>TEST</Age>
     </player>
+    <player>
+        <Position>test</Position>
+        <Name>et</Name>
+        <Squad_No></Squad_No>
+        <Club></Club>
+        <Age></Age>
+    </player>
 </squad>

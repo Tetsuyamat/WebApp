@@ -1,16 +1,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
-		<meta name="author" content="Darko Bunic"/>
-		<meta name="description" content="Drag and drop table content with JavaScript"/>
 		<meta name="viewport" content="width=device-width, user-scalable=no"/><!-- "position: fixed" fix for Android 2.2+ -->
 		<link rel="stylesheet" href="style.css" type="text/css" media="screens"/>
 		<link rel="stylesheet" href="style-screen.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="style-print.css" type="text/css" media="print"/>
 		<script type="text/javascript" src="../header.js"></script>
 		<script type="text/javascript" src="../redips-drag-min.js"></script>
-		<script type="text/javascript" src="script.js"></script>
-		<title>Example 1: Three tables</title>
+		<script type="text/javascript" src="script.js"></script>		
+		<title>Republic of Ireland Squad</title>
+  	<link rel="stylesheet" href="/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+			<style>
+				body {
+					padding-top: 60px;
+					padding-bottom: 60px;
+				}
+
+				table,
+				th,
+				td {
+					border-collapse: collapse;
+					border: 1px solid black;
+					text-align: center;
+				}
+			</style>
+			<script src="/js/jquery.min.js"></script>
+			<script src="/js/bootstrap.min.js"></script>
+			<script>
+				function load() {
+					$.ajax({
+						url: "/get/html",
+						cache: false,
+						success: function(html) {
+							$("#results").append(html);
+						}
+					});
+				};
+
+				$(document).ready(function() {
+					load();
+				});
+		</script>
 	</head>
 	<body>
 		<!-- hidden div element needed for hover -->
@@ -254,5 +285,44 @@
 			<div><input type="checkbox" class="checkbox" onclick="toggleConfirm(this)" title="Confirm delete"/><span class="message_line">Confirm delete</span></div>
 			<div><input type="checkbox" class="checkbox" onclick="toggleDragging(this)" title="Enable dragging" checked="true"/><span class="message_line">Enable dragging</span></div>			
 		</div>
+		<div class="container">
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+      </div>
+    </div>
+    <div class="page-header">
+      <h1>Republic of Ireland Squad</h1>
+    </div>
+    <div class="row">
+      <div id="results" class="span8">
+      </div>
+      <div class="span4">
+        <ul class="nav nav-list well">
+          <li>
+            <form enctype='application/json' action="/post/json" method="post">
+              <div class="field">
+                <input type="text" name="Position" placeholder="Position">
+              </div>
+              <div class="field">
+                <input type="text" name="Name" placeholder="Name">
+              </div>
+              <div class="field">
+                <input type="text" name="Squad_No" placeholder="Squad Number">
+              </div>
+              <div class="field">
+                <input type="text" name="Club" placeholder="Club">
+              </div>
+              <div class="field">
+                <input type="text" name="Age" placeholder="Age">
+              </div>
+              <div class="field">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 	</body>
 </html>
