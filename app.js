@@ -72,6 +72,25 @@ router.post('/post/json', function(req, res) {
 
 });
 
+router.post('/post2/json', function(req, res) {
+
+  // Call appendJSON function and pass in body of the current POST request
+  function tableToJSON(table) {
+				var obj = {};
+				var row, rows = table.rows;
+				for (var i=0, iLen=rows.length; i<iLen; i++) {
+					row = rows[i];
+					obj[row.cells[0].textContent] = row.cells[1].textContent
+				}
+				return JSON.stringify(obj);
+			}
+
+			console.log(tableToJSON(document.getElementById('table1'))); // {"Name:":"Carlos","Age:":"22"}"
+  // Re-direct the browser back to the page, where the POST request came from
+  res.redirect('back');
+
+});
+
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
   var addr = server.address();
   console.log("Server listening at", addr.address + ":" + addr.port);
