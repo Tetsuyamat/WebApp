@@ -15,9 +15,16 @@ router.use(bodyParser.json());
 
 // GET request to dislay index.html located inside /views folder
 router.get('/', function(req, res) {
-  res.render('index');
+  res.render('squads');
 });
+/*	if (req.url === "squads") {
+    res.render('squads');
+  }
 
+  // 404'd!
+  else {
+   res.render('index');
+  }*/
 // HTML produced by XSL Transformation
 router.get('/get/html', function(req, res) {
   

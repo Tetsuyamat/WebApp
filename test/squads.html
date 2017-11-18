@@ -27,21 +27,6 @@
 			<script src="/js/jquery.min.js"></script>
 			<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/jquery.tabletojson.js"></script>
-			<script>
-				function load() {
-					$.ajax({
-						url: "/get/html",
-						cache: false,
-						success: function(html) {
-							$("#results").append(html);
-						}
-					});
-				};
-
-				$(document).ready(function() {
-					load();
-				});
-		</script>
 	</head>
 	<body>
 		<!-- hidden div element needed for hover -->
@@ -52,40 +37,10 @@
       </div>
     </div>
     <div class="page-header">
-      <h1>Republic of Ireland Squad</h1>
-    </div>
-    <div class="row">
-      <div id="results" class="span8">
-      </div>
-      <div class="span4">
-        <ul class="nav nav-list well">
-          <li>
-            <form enctype='application/json' action="/post/json" method="post">
-              <div class="field">
-                <input type="text" name="Position" placeholder="Position">
-              </div>
-              <div class="field">
-                <input type="text" name="Name" placeholder="Name">
-              </div>
-              <div class="field">
-                <input type="text" name="Squad_No" placeholder="Squad Number">
-              </div>
-              <div class="field">
-                <input type="text" name="Club" placeholder="Club">
-              </div>
-              <div class="field">
-                <input type="text" name="Age" placeholder="Age">
-              </div>
-              <div class="field">
-                <button type="submit">Submit</button>
-              </div>
-            </form>
-          </li>
-        </ul>
-      </div>
+      <h1>Squads</h1>
     </div>
   </div>
-	<a href="squad.html">link text</a>
+		
 	<br><br><br>
 		<!-- tables inside this DIV could have draggable content -->
 		<div id="redips-drag">
