@@ -184,12 +184,6 @@
 							<td></td>
 						</tr>
 					</table>
-					<div class="instructions">
-						Element dropped to the right container can be cloned with shift key.
-						Press shift key and start to drag expanded element.
-						On the other hand, cloned element will be deleted in case of dropping back to the left table.
-						Original and cloned elements have different hover color.
-					</div>
 				</div>
 
 			</div><!-- left container -->
@@ -315,6 +309,7 @@
 					<td class="redips-trash" title="Trash">Trash</td>
 				</tr>
 			</table>
+			<br><br><br><br>
 			<div><input type="button" value="Save1" class="button" onclick="save('plain')" title="Send content to the server (it will only show accepted parameters)"/><span class="message_line">Save content of the first table (plain query string)</span></div>
 			<div><input type="button" value="Save2" class="button" onclick="save('json')" title="Send content to the server (it will only show accepted parameters)"/><span class="message_line">Save content of the first table (JSON format)</span></div>
 			<div><input type="radio" name="drop_option" class="checkbox" onclick="setMode(this)" value="multiple" title="Enabled dropping to already taken table cells" checked="true"/><span class="message_line">Enable dropping to already taken table cells</span></div>
