@@ -1,24 +1,20 @@
-var express = require("express");
-var app = express();
-
 var http = require('http'),
     path = require('path'),
+    express = require('express'),
     bodyParser = require('body-parser'),
     fs = require('fs'),
     js2xmlparser = require('js2xmlparser'),
     libxslt = require('libxslt');
 
-//var router = express(); - change router to app
-var server = http.createServer(app);
+var router = express();
+var server = http.createServer(router);
 
-app.use(express.static(path.resolve(__dirname, 'views')));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+router.use(express.static(path.resolve(__dirname, 'views')));
+router.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.json());
 
-/*
-/////////////////////////////////
 // GET request to dislay index.html located inside /views folder
-app.get('/', function(req, res) {
+router.get('/', function(req, res) {
   res.render('squads');
 });
 /*	if (req.url === "squads") {
@@ -30,8 +26,7 @@ app.get('/', function(req, res) {
    res.render('index');
   }*/
 // HTML produced by XSL Transformation
-
-app.get('/get/html', function(req, res) {
+router.get('/get/html', function(req, res) {
   
     res.writeHead(200, { 'Content-Type': 'text/html' });
     
@@ -48,7 +43,7 @@ app.get('/get/html', function(req, res) {
 });
 
 // POST request to add to JSON & XML files
-app.post('/post/json', function(req, res) {
+router.post('/post/json', function(req, res) {
 
   // Function to read in a JSON file, add to it & convert to XML
   function appendJSON(obj) {
@@ -84,7 +79,7 @@ app.post('/post/json', function(req, res) {
 
 });
 
-app.post('/post2/json', function(req, res) {
+router.post('/post2/json', function(req, res) {
 
   // Call appendJSON function and pass in body of the current POST request
   function tableToJSON(table) {
@@ -103,91 +98,7 @@ app.post('/post2/json', function(req, res) {
 
 });
 
-
-///////////////////////////
-
-app.all("*", function(request, response, next) {
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  next();
-});
-
-app.get("/", function(request, response) {
-  response.end("Welcome to the homepage!");
-});
-
-app.get("/squads", function(request, response) {
-  response.render('squads');
-});
-
-app.get("*", function(request, response) {
-  response.end("404!");
-});
-
-http.createServer(app).listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
-  console.log("Server listening at");
-});
-
-
-
-
-/*
-var http = require("http");
-
-http.createServer(function(req, res) {
-  // Homepage
-  if (req.url === "/") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("Welcome to the homepage!");
-  }
-
-  // About page
-  else if (req.url === "/about") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("Welcome to the about page!");
-  }
-
-  // 404'd!
-  else {
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("404 error! File not found.");
-  }
-}).listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
-  console.log("Server listening at");
-});
-
-
-
-//1337, "localhost");
-
-/*
-// Require what we need
-var http = require("http");
-
-// Build the server
-
-var app = http.createServer(function(request, response) {
-  // Build the answer
-  var answer = "";
-  answer += "Request URL: " + request.url + "\n";
-  answer += "Request type: " + request.method + "\n";
-  answer += "Request headers: " + JSON.stringify(request.headers) + "\n";
-
-  // Send answer
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  response.end(answer);
-});
-
-
-// Start that server, added port 3000 etc 
-app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
-  var addr = app.address();
-  console.log("Server listening at", addr.address + ":" + addr.port);
-});
-
-/*1337, "localhost");
-console.log("Server running at http://localhost:1337/");
-
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
   var addr = server.address();
   console.log("Server listening at", addr.address + ":" + addr.port);
-});*/
+});
