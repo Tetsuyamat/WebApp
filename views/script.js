@@ -76,6 +76,55 @@ redipsInit = function () {
 	};
 };
 
+//LOAD FUNCTION
+var redips = {};
+
+
+// redips initialization
+redips.init = function () {
+	// reference to the REDIPS.drag library
+	var	rd = REDIPS.drag;
+	// initialization
+	rd.init();
+	// error handler called if error occured during loading table content
+	rd.error.loadContent = function (obj) {
+		// display error message (non blocking alert)
+		setTimeout(function () {
+			alert(obj.message + ' (error type ' + obj.type + ')');
+		}, 100);
+		// return false on first error and stop further processing
+		//return false;
+	};
+	// set reference to the target table
+	redips.targetTable = document.getElementById('myTable');
+};
+
+
+// method called on button1 click
+// JSON data is retrieved from server script db_ajax2.html
+redips.button1 = function () {
+	REDIPS.drag.loadContent(redips.targetTable, 'db_ajax2.html');
+};
+
+// method called on button2 click
+// JSON data is put as second parameter
+redips.button2 = function () {
+	REDIPS.drag.loadContent('myTable', [["d6", 0, 1, "green", "B1"], ["d6", 6, 2, "green", "B2"], ["d7", 7, 4, "green", "B3"]]);
+};
+
+redips.button3 = function () {
+	// prepare JSON data to place to the HTML table
+	var data = document.getElementById('textField').value;
+	// place content to the table
+	REDIPS.drag.loadContent(redips.targetTable, data);
+};
+
+// method deletes all DIV elements with redips-drag class name from table with id=myTable
+redips.clearTable = function () {
+	REDIPS.drag.clearTable('myTable');
+};
+
+////////////////////////////////////////////////////////////////////////
 
 // toggles trash_ask parameter defined at the top
 function toggleConfirm(chk) {
@@ -129,7 +178,9 @@ function save(type) {
 }
 
 
- /* function save(type) {
+
+/*
+ function save(type) {
 
 		var table_content;
 		// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
@@ -156,6 +207,14 @@ function save(type) {
 
 
 // add onload event listener
+// add onload event listener
+if (window.addEventListener) {
+	window.addEventListener('load', redips.init, false);
+}
+else if (window.attachEvent) {
+	window.attachEvent('onload', redips.init);
+}
+
 if (window.addEventListener) {
 	window.addEventListener('load', redipsInit, false);
 }

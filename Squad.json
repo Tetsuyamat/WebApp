@@ -42,6 +42,21 @@
             "Squad_No": "",
             "Club": "",
             "Age": ""
-        }
+        },
+        {
+            "Position": "RB",
+            "Name": "Tetsuya Matsushita",
+            "Squad_No": "23",
+            "Club": "Arsenal",
+            "Age": "26"
+        },
+        {
+            "Position": "",
+            "Name": "Tets",
+            "Squad_No": "",
+            "Club": "",
+            "Age": ""
+        },
+        {}
     ]
 }

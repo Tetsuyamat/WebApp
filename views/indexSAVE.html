@@ -5,9 +5,7 @@
 		<link rel="stylesheet" href="style.css" type="text/css" media="screens"/>
 		<link rel="stylesheet" href="style-screen.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="style-print.css" type="text/css" media="print"/>
-		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js"></script>
 		<script type="text/javascript" src="../redips-drag-min.js"></script>
-		<script type="text/javascript" src="redips-drag-min.js"></script>
 		<script type="text/javascript" src="script.js"></script>		
 		<title>Republic of Ireland Squad</title>
   	<link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -29,7 +27,6 @@
 			<script src="/js/jquery.min.js"></script>
 			<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/jquery.tabletojson.js"></script>
-			<script src="/js/jquery.tabletojson.js"></script>
 			<script>
 				function load() {
 					$.ajax({
@@ -55,13 +52,43 @@
       </div>
     </div>
     <div class="page-header">
-      <h1>Squads</h1>
+      <h1>Republic of Ireland Squad</h1>
+    </div>
+    <div class="row">
+      <div id="results" class="span8">
+      </div>
+      <div class="span4">
+        <ul class="nav nav-list well">
+          <li>
+            <form enctype='application/json' action="/post/json" method="post">
+              <div class="field">
+                <input type="text" name="Position" placeholder="Position">
+              </div>
+              <div class="field">
+                <input type="text" name="Name" placeholder="Name">
+              </div>
+              <div class="field">
+                <input type="text" name="Squad_No" placeholder="Squad Number">
+              </div>
+              <div class="field">
+                <input type="text" name="Club" placeholder="Club">
+              </div>
+              <div class="field">
+                <input type="text" name="Age" placeholder="Age">
+              </div>
+              <div class="field">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-		
+
+      <h1><a href="squads.html">Squads</a></h1>
+ 
 	<br><br><br>
-			<!-- main container -->
-		<div id="main-container">
 		<!-- tables inside this DIV could have draggable content -->
 		<div id="redips-drag">
 			
@@ -295,106 +322,7 @@
 			<div><input type="checkbox" class="checkbox" onclick="toggleDeleteCloned(this)" title="Remove cloned object if dragged outside of any table" checked="true"/><span class="message_line">Remove cloned element if dragged outside of any table</span></div>
 			<div><input type="checkbox" class="checkbox" onclick="toggleConfirm(this)" title="Confirm delete"/><span class="message_line">Confirm delete</span></div>
 			<div><input type="checkbox" class="checkbox" onclick="toggleDragging(this)" title="Enable dragging" checked="true"/><span class="message_line">Enable dragging</span></div>
-		
-			<form enctype='application/json' action="/post2/json" method="post">
-              <div class="field">
-                <button type="submit">Submit</button>
-              </div>
-     </form>
-			
-			<br><br><br><br>
-			<!-- load buttons -->
-				<input class="button" type="button" value="Load1" title="Load content from server via AJAX" onclick="redips.button1()"/>
-				<input class="button" type="button" value="Load2" title="Load content from JSON array as parameter in loadContent method" onclick="redips.button2()"/>
-				<br/>
-				<input class="button" type="button" value="Load3" title="Load content from string in text field below" onclick="redips.button3()"/>
-				<br/>
-				<input class="text" type="text" id="textField" value="[[&quot;d16&quot;, 2, 1, &quot;orange&quot;, &quot;C1&quot;], [&quot;d17&quot;, 3, 3, &quot;orange&quot;, &quot;C2&quot;]]"/>
-				<br/>
-				<input class="button clear" type="button" value="Clear" title="Clear table content" onclick="redips.clearTable()"/>
 
-				<!-- content table -->
-				<table id="myTable">
-					<colgroup>
-						<col width="70"/>
-						<col width="70"/>
-						<col width="70"/>
-						<col width="70"/>
-						<col width="70"/>
-					</colgroup>
-					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-
-				<!-- trash -->
-				<table id="mini">
-					<colgroup>
-						<col width="70"/>
-					</colgroup>
-					<tbody>
-						<tr>
-							<td class="redips-trash" title="Trash cell - drag DIV element here to delete">Trash</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>	
-			
 		</div>
 		<br><br><br>
 		<button id="run" class="btn btn-primary">Convert!</button>
@@ -406,8 +334,9 @@
               </div>
      </form>
 		
+		<script>
 			
-		<script>						
+						
 			function tableToJSON(table) {
 				var obj = {};
 				var row, rows = table.rows;

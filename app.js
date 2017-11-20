@@ -8,7 +8,9 @@ var http = require('http'),
     js2xmlparser = require('js2xmlparser'),
     libxslt = require('libxslt');
 
-//var router = express(); - change router to app
+
+eval(fs.readFileSync('redips-drag-min.js')+'');
+//var router = express(); - changed router to app
 var server = http.createServer(app);
 
 app.use(express.static(path.resolve(__dirname, 'views')));
@@ -29,100 +31,150 @@ app.get('/', function(req, res) {
   else {
    res.render('index');
   }*/
-// HTML produced by XSL Transformation
 
+// HTML produced by XSL Transformation
 app.get('/get/html', function(req, res) {
-  
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    
     var docSource = fs.readFileSync('Squad.xml', 'utf8');
     var stylesheetSource = fs.readFileSync('Squad.xsl', 'utf8');
-    
     var doc = libxslt.libxmljs.parseXml(docSource);
-    var stylesheet = libxslt.parse(stylesheetSource);
-    
-    var result = stylesheet.apply(doc);
-    
-    res.end(result.toString());
-  
+    var stylesheet = libxslt.parse(stylesheetSource); 
+    var result = stylesheet.apply(doc); 
+    res.end(result.toString()); 
 });
 
 // POST request to add to JSON & XML files
 app.post('/post/json', function(req, res) {
-
   // Function to read in a JSON file, add to it & convert to XML
   function appendJSON(obj) {
-
     // Read in a JSON file
     var JSONfile = fs.readFileSync('Squad.json', 'utf8');
-
     // Parse the JSON file in order to be able to edit it 
     var JSONparsed = JSON.parse(JSONfile);
-
     // Add a new record into player array within the JSON file    
     JSONparsed.player.push(obj);
-
     // Beautify the resulting JSON file
     var JSONformated = JSON.stringify(JSONparsed, null, 4);
-
     // Write the updated JSON file back to the system 
     fs.writeFileSync('Squad.json', JSONformated);
-
     // Convert the updated JSON file to XML     
     var XMLformated = js2xmlparser.parse("squad", JSON.parse(JSONformated));
-
     // Write the resulting XML back to the system
     fs.writeFileSync('Squad.xml', XMLformated);
-
   }
-  
   // Call appendJSON function and pass in body of the current POST request
   appendJSON(req.body);
-  
   // Re-direct the browser back to the page, where the POST request came from
   res.redirect('back');
-
 });
 
-app.post('/post2/json', function(req, res) {
 
+//TEST POST SUBMIT 
+/*app.post('/post2/json', function(req, res) {
+   // Function to read in a JSON file, add to it & convert to XML
+  function appendJSON(obj) {
+    // Read in a JSON file
+    var JSONfile = fs.readFileSync('test.json', 'utf8');
+    // Parse the JSON file in order to be able to edit it 
+    var JSONparsed = JSON.parse(JSONfile);
+    // Add a new record into player array within the JSON file    
+    JSONparsed.player.push(obj);
+    // Beautify the resulting JSON file
+    var JSONformated = JSON.stringify(JSONparsed, null, 4);
+    // Write the updated JSON file back to the system 
+    fs.writeFileSync('test.json', JSONformated);
+    // Convert the updated JSON file to XML     
+    var XMLformated = js2xmlparser.parse("squad", JSON.parse(JSONformated));
+    // Write the resulting XML back to the system
+    fs.writeFileSync('test.xml', XMLformated);
+  }
   // Call appendJSON function and pass in body of the current POST request
-  function tableToJSON(table) {
-				var obj = {};
-				var row, rows = table.rows;
-				for (var i=0, iLen=rows.length; i<iLen; i++) {
-					row = rows[i];
-					obj[row.cells[0].textContent] = row.cells[1].textContent
-				}
-				return JSON.stringify(obj);
-			}
-
-			console.log(tableToJSON(document.getElementById('table1'))); // {"Name:":"Carlos","Age:":"22"}"
+  appendJSON(req.body);
   // Re-direct the browser back to the page, where the POST request came from
   res.redirect('back');
+});*/
 
+
+//TEST POST SUBMIT 
+app.post('/post2/json', function(req, res) {
+	// define table_content variable
+	var table_content;
+	// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
+	table_content = REDIPS.drag.saveContent('table1', type);
+	// if content doesn't exist
+	if (!table_content) {
+		alert('Table is empty!');
+	}
+	// display query string
+	else if (type === 'json') {
+			var table = $('#table1').tableToJSON();
+			console.log(table);
+			alert(JSON.stringify(table));  
+	}
+	else {
+		//window.open('/my/multiple-parameters.php?' + table_content, 'Mypop', 'width=350,height=160,scrollbars=yes');
+		window.open('multiple-parameters.php?' + table_content, 'Mypop', 'width=360,height=260,scrollbars=yes');
+	}
+
+  // Re-direct the browser back to the page, where the POST request came from
+  res.redirect('back');
 });
 
 
-///////////////////////////
 
-app.all("*", function(request, response, next) {
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  next();
-});
+/*function save(type) {
+	// define table_content variable
+	var table_content;
+	// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
+	table_content = REDIPS.drag.saveContent('table1', type);
+	// if content doesn't exist
+	if (!table_content) {
+		alert('Table is empty!');
+	}
+	// display query string
+	else if (type === 'json') {
+			var table = $('#table1').tableToJSON();
+			console.log(table);
+			alert(JSON.stringify(table));  
+	}
+	else {
+		//window.open('/my/multiple-parameters.php?' + table_content, 'Mypop', 'width=350,height=160,scrollbars=yes');
+		window.open('multiple-parameters.php?' + table_content, 'Mypop', 'width=360,height=260,scrollbars=yes');
+	}
+}*/
 
-app.get("/", function(request, response) {
-  response.end("Welcome to the homepage!");
-});
 
+
+
+
+
+
+/*
+Copyright (c) 2008-2017, www.redips.net All rights reserved.
+Code licensed under the BSD License: http://www.redips.net/license/
+http://www.redips.net/javascript/drag-and-drop-table-content/
+Version 5.2.4
+Apr 16, 2017.
+*/
+
+
+
+
+
+
+
+//Multiple page functions
 app.get("/squads", function(request, response) {
   response.render('squads');
 });
+
+
 
 app.get("*", function(request, response) {
   response.end("404!");
 });
 
+//Start the server
 http.createServer(app).listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
   console.log("Server listening at");
 });
@@ -130,7 +182,7 @@ http.createServer(app).listen(process.env.PORT || 3000, process.env.IP || "0.0.0
 
 
 
-/*
+/* ORIGINAL TEST CODE - DELETE AT SOME POINT
 var http = require("http");
 
 http.createServer(function(req, res) {
@@ -159,7 +211,7 @@ http.createServer(function(req, res) {
 
 //1337, "localhost");
 
-/*
+/* 
 // Require what we need
 var http = require("http");
 

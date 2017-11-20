@@ -43,4 +43,19 @@
         <Club></Club>
         <Age></Age>
     </player>
+    <player>
+        <Position>RB</Position>
+        <Name>Tetsuya Matsushita</Name>
+        <Squad_No>23</Squad_No>
+        <Club>Arsenal</Club>
+        <Age>26</Age>
+    </player>
+    <player>
+        <Position></Position>
+        <Name>Tets</Name>
+        <Squad_No></Squad_No>
+        <Club></Club>
+        <Age></Age>
+    </player>
+    <player/>
 </squad>
