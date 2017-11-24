@@ -8,6 +8,7 @@
     "express": "^4.14.0",
     "fs": "0.0.1-security",
     "js2xmlparser": "^2.0.2",
+    "jsdom": "^11.4.0",
     "libxslt": "^0.6.3"
   },
   "devDependencies": {},

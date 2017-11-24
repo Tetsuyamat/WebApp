@@ -74,12 +74,19 @@ redipsInit = function () {
 		// display current row and current cell
 		msg.innerHTML = 'Changed: ' + pos[1] + ' ' + pos[2];
 	};
+	
+	
+	REDIPS.drag.dropMode = "single";
+	
+	REDIPS.drag.enableDrag(true);
 };
 
+
+
+//////////////////////////////
 //LOAD FUNCTION
+/////////////////////////////
 var redips = {};
-
-
 // redips initialization
 redips.init = function () {
 	// reference to the REDIPS.drag library
@@ -96,21 +103,42 @@ redips.init = function () {
 		//return false;
 	};
 	// set reference to the target table
-	redips.targetTable = document.getElementById('myTable');
+	redips.targetTable = document.getElementById('table1');
 };
 
 
 // method called on button1 click
-// JSON data is retrieved from server script db_ajax2.html
+// JSON data is retrieved from server
 redips.button1 = function () {
-	REDIPS.drag.loadContent(redips.targetTable, 'db_ajax2.html');
+		
+					/*$.ajax({
+						url: "/get2/tabledata",
+						success: function(json) {
+						var tabledata;
+						var parsed2 = JSON.parse(tabledata);
+						REDIPS.drag.loadContent(redips.targetTable, parsed2);
+						}	
+					});*/
+	
+	REDIPS.drag.loadContent(redips.targetTable, 'test.json');
 };
+
 
 // method called on button2 click
 // JSON data is put as second parameter
 redips.button2 = function () {
-	REDIPS.drag.loadContent('myTable', [["d6", 0, 1, "green", "B1"], ["d6", 6, 2, "green", "B2"], ["d7", 7, 4, "green", "B3"]]);
+		
+	var tabletest = $('#table1').tableToJSON();
+	/*var table_content;
+	// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
+	table_content = REDIPS.drag.saveContent('table1');*/
+	console.log(tabletest);
+	alert(JSON.stringify(tabletest)); 
+	
+	REDIPS.drag.loadContent('myTable', JSON.stringify(tabletest));
+	//REDIPS.drag.loadContent('myTable', [["d6", 0, 1, "green", "B1"], ["d6", 6, 2, "green", "B2"], ["d7", 7, 4, "green", "B3"]]);
 };
+
 
 redips.button3 = function () {
 	// prepare JSON data to place to the HTML table
@@ -121,7 +149,7 @@ redips.button3 = function () {
 
 // method deletes all DIV elements with redips-drag class name from table with id=myTable
 redips.clearTable = function () {
-	REDIPS.drag.clearTable('myTable');
+	REDIPS.drag.clearTable('table1');
 };
 
 ////////////////////////////////////////////////////////////////////////
@@ -129,30 +157,29 @@ redips.clearTable = function () {
 // toggles trash_ask parameter defined at the top
 function toggleConfirm(chk) {
 	if (chk.checked === true) {
-		REDIPS.drag.trash.question = 'Are you sure you want to delete DIV element?';
+		REDIPS.drag.trash.question = 'Are you sure you want to delete?';
 	}
 	else {
 		REDIPS.drag.trash.question = null;
 	}
 }
 
-
 // toggles delete_cloned parameter defined at the top
 function toggleDeleteCloned(chk) {
 	REDIPS.drag.clone.drop = !chk.checked;
 }
 
-
 // enables / disables dragging
+/* CHANGED FROM FUNCTION, TO RUN AT START OF SCRIPT - ALWAYS ON 
 function toggleDragging(chk) {
 	REDIPS.drag.enableDrag(chk.checked);
-}
-
+} */
 
 // function sets drop_option parameter defined at the top
+/* CHANGED FROM FUNCTION, TO RUN AT START OF SCRIPT
 function setMode(radioButton) {
-	REDIPS.drag.dropMode = radioButton.value;
-}
+	REDIPS.drag.dropMode = "single";
+}*/	
 
 
 // show prepared content for saving
@@ -161,53 +188,31 @@ function save(type) {
 	var table_content;
 	// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
 	table_content = REDIPS.drag.saveContent('table1', type);
+
 	// if content doesn't exist
 	if (!table_content) {
 		alert('Table is empty!');
 	}
 	// display query string
 	else if (type === 'json') {
-			var table = $('#table1').tableToJSON();
-			console.log(table);
-			alert(JSON.stringify(table));  
-	}
-	else {
-		//window.open('/my/multiple-parameters.php?' + table_content, 'Mypop', 'width=350,height=160,scrollbars=yes');
-		window.open('multiple-parameters.php?' + table_content, 'Mypop', 'width=360,height=260,scrollbars=yes');
+
+		$.ajax({
+				type: "POST",
+				url:"post6/json",
+				data: {table_content: JSON.stringify(table_content)},
+				dataType:'json',
+				contentType: "application/x-www-form-urlencoded",
+	   		success: function(data) {
+        		alert('Data was succesfully captured');
+      	}
+			});
+		alert('Data was succesfully captured');
 	}
 }
 
 
 
-/*
- function save(type) {
-
-		var table_content;
-		// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
-		table_content = REDIPS.drag.saveContent('table1', type);
-		
-    // Read in a JSON file
-    var JSONfile = fs.readFileSync('test.json', 'utf8');
-
-    // Parse the JSON file in order to be able to edit it 
-    var JSONparsed = JSON.parse(JSONfile);
-
-    // Add a new record into player array within the JSON file    
-    JSONparsed.player.push(table_content);
-
-    // Beautify the resulting JSON file
-    var JSONformated = JSON.stringify(JSONparsed, null, 4);
-
-    // Write the updated JSON file back to the system 
-    fs.writeFileSync('test.json', JSONformated);
-
-
-  }*/
-
-
-
-// add onload event listener
-// add onload event listener
+//add onload event listener
 if (window.addEventListener) {
 	window.addEventListener('load', redips.init, false);
 }
@@ -221,3 +226,5 @@ if (window.addEventListener) {
 else if (window.attachEvent) {
 	window.attachEvent('onload', redipsInit);
 }
+
+

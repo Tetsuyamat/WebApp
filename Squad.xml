@@ -58,4 +58,25 @@
         <Age></Age>
     </player>
     <player/>
+    <player>
+        <Position></Position>
+        <Name></Name>
+        <Squad_No></Squad_No>
+        <Club></Club>
+        <Age></Age>
+    </player>
+    <player>
+        <Position></Position>
+        <Name></Name>
+        <Squad_No></Squad_No>
+        <Club></Club>
+        <Age></Age>
+    </player>
+    <player>
+        <Position></Position>
+        <Name></Name>
+        <Squad_No></Squad_No>
+        <Club></Club>
+        <Age></Age>
+    </player>
 </squad>

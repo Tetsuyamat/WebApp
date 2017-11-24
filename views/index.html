@@ -5,11 +5,10 @@
 		<link rel="stylesheet" href="style.css" type="text/css" media="screens"/>
 		<link rel="stylesheet" href="style-screen.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="style-print.css" type="text/css" media="print"/>
-		<script type="text/javascript" src="../redips-drag-min.js"></script>
-		<script type="text/javascript" src="script.js"></script>		
 		<title>Republic of Ireland Squad</title>
   	<link rel="stylesheet" href="/css/bootstrap.min.css">
   	<link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 			<style>
 				body {
 					padding-top: 60px;
@@ -60,7 +59,7 @@
       <div class="span4">
         <ul class="nav nav-list well">
           <li>
-            <form enctype='application/json' action="/post/json" method="post">
+            <form enctype='application/json' action="/post3/json" method="post">
               <div class="field">
                 <input type="text" name="Position" placeholder="Position">
               </div>
@@ -87,30 +86,7 @@
   </div>
 
   <h1><a href="squads.html">Squads</a></h1>
- 
-	<br><br><br>
-	<button id="run" class="btn btn-primary">Convert!</button>
-	<br><br>
-	<form enctype='application/json' action="/post2/json" method="post">
-            
-              <div class="field">
-                <button type="submit">Submit</button>
-              </div>
-    </form>
 		
-		<script>	
-			function tableToJSON(table) {
-				var obj = {};
-				var row, rows = table.rows;
-				for (var i=0, iLen=rows.length; i<iLen; i++) {
-					row = rows[i];
-					obj[row.cells[0].textContent] = row.cells[1].textContent
-				}
-				return JSON.stringify(obj);
-			}
-
-			console.log(tableToJSON(document.getElementById('table1'))); // {"Name:":"Carlos","Age:":"22"}"
-		</script>
-		
+		<br><br><br>
 	</body>
 </html>

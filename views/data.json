@@ -1,0 +1,10 @@
+[ {"Model" : "Iphone 18", "Name" : "iOS", "Share" : 57.56,"Price Range":"$800 - $1000","Brand":"Apple"},
+ {"Model" : "Nexus 23", "Name" : "Android", "Share" : 24.66,"Price Range":"$600 - $800","Brand":"Samsung"},
+ {"Model" : "Tom-tom", "Name" : "Java ME", "Share" : 10.72,"Price Range":"$200 - $900","Brand":"X Brand"},
+{"Model" : "Nokia 66610", "Name" : "Symbian", "Share" : 2.49,"Price Range":"$100 - $500","Brand":"Nokia"},
+ {"Model" : "Blackberry", "Name" : "Blackberry", "Share" : 2.26,"Price Range":"$100 - $1000","Brand":"Blackberry"},
+ {"Model" : "Lumia", "Name" : "Windows Phone", "Share" : 1.33,"Price Range":"$200 - $600","Brand":"Nokia"},
+ {"Model" : "iPhone 6", "Name" : "Java ME", "Share" : 10.72,"Price Range":"$200 - $900","Brand":"X Brand"},
+ {"Model" : "Nokia 66610", "Name" : "Symbian", "Share" : 2.49,"Price Range":"$100 - $500","Brand":"Nokia"},
+ {"Model" : "Micromax", "Name" : "Blackberry", "Share" : 2.26,"Price Range":"$100 - $1000","Brand":"Blackberry"},
+ {"Model" : "Lumia ", "Name" : "Windows Phone", "Share" : 1.33,"Price Range":"$200 - $600","Brand":"Nokia"} ]

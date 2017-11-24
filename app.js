@@ -8,8 +8,6 @@ var http = require('http'),
     js2xmlparser = require('js2xmlparser'),
     libxslt = require('libxslt');
 
-
-eval(fs.readFileSync('redips-drag-min.js')+'');
 //var router = express(); - changed router to app
 var server = http.createServer(app);
 
@@ -17,21 +15,11 @@ app.use(express.static(path.resolve(__dirname, 'views')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-/*
+
+
 /////////////////////////////////
-// GET request to dislay index.html located inside /views folder
-app.get('/', function(req, res) {
-  res.render('squads');
-});
-/*	if (req.url === "squads") {
-    res.render('squads');
-  }
 
-  // 404'd!
-  else {
-   res.render('index');
-  }*/
-
+//GET requests
 // HTML produced by XSL Transformation
 app.get('/get/html', function(req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -43,8 +31,24 @@ app.get('/get/html', function(req, res) {
     res.end(result.toString()); 
 });
 
+
+app.get('/get2/tabledata', function(req, res) {
+				//res.writeHead(200, { 'Content-Type': 'application/json' });
+				var data = fs.readFileSync('views/test.txt','utf8');
+				var parsed2 = JSON.parse(data);
+			  res.send(data);
+				//console.log(String.fromCharCode.apply(null, parsed));	
+				console.log(data);
+				console.log(parsed2);
+				console.log(String(parsed2));
+  res.redirect('back');
+});
+
+//POST requests
+
 // POST request to add to JSON & XML files
-app.post('/post/json', function(req, res) {
+//MAIN POST ie. /post/json - changed to post3 for testing. Change code back at cleanup
+app.post('/post3/json', function(req, res) {
   // Function to read in a JSON file, add to it & convert to XML
   function appendJSON(obj) {
     // Read in a JSON file
@@ -69,106 +73,33 @@ app.post('/post/json', function(req, res) {
 });
 
 
-//TEST POST SUBMIT 
-/*app.post('/post2/json', function(req, res) {
-   // Function to read in a JSON file, add to it & convert to XML
-  function appendJSON(obj) {
-    // Read in a JSON file
-    var JSONfile = fs.readFileSync('test.json', 'utf8');
-    // Parse the JSON file in order to be able to edit it 
-    var JSONparsed = JSON.parse(JSONfile);
-    // Add a new record into player array within the JSON file    
-    JSONparsed.player.push(obj);
-    // Beautify the resulting JSON file
-    var JSONformated = JSON.stringify(JSONparsed, null, 4);
-    // Write the updated JSON file back to the system 
-    fs.writeFileSync('test.json', JSONformated);
-    // Convert the updated JSON file to XML     
-    var XMLformated = js2xmlparser.parse("squad", JSON.parse(JSONformated));
-    // Write the resulting XML back to the system
-    fs.writeFileSync('test.xml', XMLformated);
-  }
-  // Call appendJSON function and pass in body of the current POST request
-  appendJSON(req.body);
-  // Re-direct the browser back to the page, where the POST request came from
-  res.redirect('back');
-});*/
+app.post('/post6/json', function(req, res) {
+ 
+	var content = req.body.table_content;
 
-
-//TEST POST SUBMIT 
-app.post('/post2/json', function(req, res) {
-	// define table_content variable
-	var table_content;
-	// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
-	table_content = REDIPS.drag.saveContent('table1', type);
-	// if content doesn't exist
-	if (!table_content) {
-		alert('Table is empty!');
-	}
-	// display query string
-	else if (type === 'json') {
-			var table = $('#table1').tableToJSON();
-			console.log(table);
-			alert(JSON.stringify(table));  
-	}
-	else {
-		//window.open('/my/multiple-parameters.php?' + table_content, 'Mypop', 'width=350,height=160,scrollbars=yes');
-		window.open('multiple-parameters.php?' + table_content, 'Mypop', 'width=360,height=260,scrollbars=yes');
-	}
-
-  // Re-direct the browser back to the page, where the POST request came from
-  res.redirect('back');
+	var parsedContent = JSON.parse(content);
+	
+		fs.writeFile('views/test.json', parsedContent,'utf8', function (err) {
+			if (err) {
+				// append failed
+			} else {
+				// done
+			}
+		})
+	res.sendStatus(200)
+	
+	/* Logging used to test and verify data
+	console.log(parsedContent);
+	console.log(req.body);
+	console.log(req.body.table_content);
+	*/
 });
-
-
-
-/*function save(type) {
-	// define table_content variable
-	var table_content;
-	// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
-	table_content = REDIPS.drag.saveContent('table1', type);
-	// if content doesn't exist
-	if (!table_content) {
-		alert('Table is empty!');
-	}
-	// display query string
-	else if (type === 'json') {
-			var table = $('#table1').tableToJSON();
-			console.log(table);
-			alert(JSON.stringify(table));  
-	}
-	else {
-		//window.open('/my/multiple-parameters.php?' + table_content, 'Mypop', 'width=350,height=160,scrollbars=yes');
-		window.open('multiple-parameters.php?' + table_content, 'Mypop', 'width=360,height=260,scrollbars=yes');
-	}
-}*/
-
-
-
-
-
-
-
-/*
-Copyright (c) 2008-2017, www.redips.net All rights reserved.
-Code licensed under the BSD License: http://www.redips.net/license/
-http://www.redips.net/javascript/drag-and-drop-table-content/
-Version 5.2.4
-Apr 16, 2017.
-*/
-
-
-
-
-
 
 
 //Multiple page functions
 app.get("/squads", function(request, response) {
   response.render('squads');
 });
-
-
 
 app.get("*", function(request, response) {
   response.end("404!");
@@ -178,8 +109,6 @@ app.get("*", function(request, response) {
 http.createServer(app).listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
   console.log("Server listening at");
 });
-
-
 
 
 /* ORIGINAL TEST CODE - DELETE AT SOME POINT
