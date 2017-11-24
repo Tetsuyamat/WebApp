@@ -79,4 +79,11 @@
         <Club></Club>
         <Age></Age>
     </player>
+    <player>
+        <Position>tet</Position>
+        <Name>Tetsuyae</Name>
+        <Squad_No>et</Squad_No>
+        <Club>ets</Club>
+        <Age>ets</Age>
+    </player>
 </squad>

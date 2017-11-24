@@ -78,6 +78,13 @@
             "Squad_No": "",
             "Club": "",
             "Age": ""
+        },
+        {
+            "Position": "tet",
+            "Name": "Tetsuyae",
+            "Squad_No": "et",
+            "Club": "ets",
+            "Age": "ets"
         }
     ]
 }

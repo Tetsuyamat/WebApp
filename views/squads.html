@@ -2,13 +2,14 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, user-scalable=no"/><!-- "position: fixed" fix for Android 2.2+ -->
-		<link rel="stylesheet" href="style.css" type="text/css" media="screens"/>
-		<link rel="stylesheet" href="style-screen.css" type="text/css" media="screen"/>
-		<link rel="stylesheet" href="style-print.css" type="text/css" media="print"/>
+		<link rel="stylesheet" href="/css/style.css" type="text/css" media="screens"/>
+		<link rel="stylesheet" href="/css/style-screen.css" type="text/css" media="screen"/>
+		<link rel="stylesheet" href="/css/style-print.css" type="text/css" media="print"/>
 		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js"></script>
-		<script type="text/javascript" src="../redips-drag-min.js"></script>
-		<script type="text/javascript" src="redips-drag-min.js"></script>
-		<script type="text/javascript" src="script.js"></script>		
+		<script type="text/javascript" src="/js/redips-drag-min.js"></script>
+		<script type="text/javascript" src="/js/script.js"></script>
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
 		<title>Republic of Ireland Squad</title>
   	<link rel="stylesheet" href="/css/bootstrap.min.css">
   	<link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
@@ -26,25 +27,6 @@
 					text-align: center;
 				}
 			</style>
-			<script src="/js/jquery.min.js"></script>
-			<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/jquery.tabletojson.js"></script>
-			<script src="/js/jquery.tabletojson.js"></script>
-			<script>
-				function load() {
-					$.ajax({
-						url: "/get/json",
-						cache: false,
-						success: function(html) {
-							$("#results").append(html);
-						}
-					});
-				};
-
-				$(document).ready(function() {
-					load();
-				});
-		</script>
 	</head>
 	<body>
 		<!-- hidden div element needed for hover -->
