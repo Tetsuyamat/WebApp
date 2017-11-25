@@ -75,9 +75,8 @@ redipsInit = function () {
 		msg.innerHTML = 'Changed: ' + pos[1] + ' ' + pos[2];
 	};
 	
-	
+	//Moved to always on rather than the checkboxes
 	REDIPS.drag.dropMode = "single";
-	
 	REDIPS.drag.enableDrag(true);
 };
 
@@ -103,7 +102,8 @@ redips.init = function () {
 		//return false;
 	};
 	// set reference to the target table
-	redips.targetTable = document.getElementById('table1');
+	//Manually added table into load function, becasue we are loading two tables
+	//redips.targetTable = document.getElementById('table1');
 };
 
 
@@ -120,23 +120,7 @@ redips.button1 = function () {
 						}	
 					});*/
 	
-	REDIPS.drag.loadContent(redips.targetTable, 'test.json');
-};
-
-
-// method called on button2 click
-// JSON data is put as second parameter
-redips.button2 = function () {
-		
-	var tabletest = $('#table1').tableToJSON();
-	/*var table_content;
-	// prepare table content of first table in JSON format or as plain query string (depends on value of "type" variable)
-	table_content = REDIPS.drag.saveContent('table1');*/
-	console.log(tabletest);
-	alert(JSON.stringify(tabletest)); 
-	
-	REDIPS.drag.loadContent('myTable', JSON.stringify(tabletest));
-	//REDIPS.drag.loadContent('myTable', [["d6", 0, 1, "green", "B1"], ["d6", 6, 2, "green", "B2"], ["d7", 7, 4, "green", "B3"]]);
+	REDIPS.drag.loadContent('table1', 'test.json');
 };
 
 
@@ -147,7 +131,7 @@ redips.button3 = function () {
 	REDIPS.drag.loadContent(redips.targetTable, data);
 };
 
-// method deletes all DIV elements with redips-drag class name from table with id=myTable
+// clear the pitch table
 redips.clearTable = function () {
 	REDIPS.drag.clearTable('table1');
 };

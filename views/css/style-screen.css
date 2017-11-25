@@ -18,6 +18,12 @@ body {
 	text-align: center;
 }
 
+#table1 {
+	border-collapse: collapse; 
+	border: 1px solid #839E99;
+  background: #f1f8ee; 
+}
+
 /* drag objects (DIV inside table cells) */
 .redips-drag {
 	cursor: move;
